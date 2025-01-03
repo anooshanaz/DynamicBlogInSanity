@@ -19,9 +19,9 @@ export const blog = {
             }
         },
         {
-            name: 'titleImage',
+            name: 'image',
             type: 'image',
-            title: 'Title image',
+            title: 'Post image',
         },
         {
             name:'smallDescription',

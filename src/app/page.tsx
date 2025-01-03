@@ -2,9 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { client}from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
-import { simpleBlogCard } from "@/sanity/lib/interface";
-import Image from "next/image";
 import Link from "next/link";
 
 export const revalidate = 30
@@ -15,7 +12,7 @@ export async function getData() {
     title,
     smallDescription,
     "currentSlug": slug.current,
-    titleImage
+    "imageUrl" : image.asset ->url
     }
     `
   const data = await client.fetch(query)
@@ -25,19 +22,19 @@ export async function getData() {
 
 
 export default async function Home() {
-    const data:simpleBlogCard[] = await getData();
+    const data = await getData();
     console.log(data)
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 mt-5 gap-10">
-      {data.map((post, idx) => (
+    <div className="grid grid-cols-1 lg:grid-cols-2 mt-5 gap-10 mb-8">
+      {data.map((post:any, idx:any) => (
         <Card key={idx}> 
-      {/* <Image
-       src={urlFor(post.titleImage).url()}
+      <img
+       src={post.imageUrl}
        alt="image"
        width={500}
        height={500}
        className='rounded-t-lg h-[200px] object-cover'
-       /> */}
+       />
        <CardContent className="mt-5">
         <h3 className="text-lg line-clamp-2 font-bold">
           {post.title}

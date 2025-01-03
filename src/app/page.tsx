@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { client}from "@/sanity/lib/client";
+import { client } from "@/lib/sanity";
 import Link from "next/link";
 
 export const revalidate = 30
